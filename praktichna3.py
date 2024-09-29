@@ -3,6 +3,7 @@ person = {
     "Soldier": "Alive",
     "Pyro": "Alive",
     "Heavy": "Alive",
+    "Denoman": "Alive",
     "Engineer": "Alive",
     "Medic": "Alive",
     "Sniper": "Alive",
@@ -11,7 +12,7 @@ person = {
 }
 
 person["Soldier"] = "Dead"
-person["Sniper"] = "Dead"
+person["Medic"] = "Dead"
 
 del person["Pyro"]
 person["Heavy"] = None
