@@ -1,23 +1,11 @@
-from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
+import telebot
 
-# Ваш токен
-TOKEN = "7906404044:AAGxI5riFUMwoLHmd9iD-OMZ2Rt3Uwz7C50"
+TOKEN = '7906404044:AAGxI5riFUMwoLHmd9iD-OMZ2Rt3Uwz7C50'
+bot = telebot.TeleBot(TOKEN)
 
-# Команда /start
-async def start(update: Update, context):
-    await update.message.reply_text("Привіт! Я бот. Що хочеш зробити?")
+@bot.message_handler(func=lambda message: True)
 
-# Ехо-відповідь на повідомлення
-async def echo(update: Update, context):
-    await update.message.reply_text(update.message.text)
+def echo_message(message):
+    bot.reply_to(message, message.text)
 
-# Головна функція
-if __name__ == '__main__':
-    app = ApplicationBuilder().token(TOKEN).build()
-
-    app.add_handler(CommandHandler("start", start))
-    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
-
-    print("Бот запущений!")
-    app.run_polling()
+bot.polling()
